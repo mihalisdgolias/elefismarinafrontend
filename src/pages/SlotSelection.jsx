@@ -9,7 +9,7 @@ export default function SlotSelection() {
   useEffect(() => {
     async function fetchSlots() {
       try {
-        const res = await fetch('${process.env.REACT_APP_API_BASE}/api/bookings/available');
+        const res = await fetch('${import.meta.env.VITE_API_BASE}/api/bookings/available');
         if (!res.ok) throw new Error('Failed to load slots');
         const data = await res.json();
         setSlots(data);

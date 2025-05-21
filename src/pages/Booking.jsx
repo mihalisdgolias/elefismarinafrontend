@@ -33,7 +33,7 @@ export default function Booking() {
     }
 
     try {
-      const res = await fetch('${process.env.REACT_APP_API_BASE}/api/booking/available', {
+      const res = await fetch('${import.meta.env.VITE_API_BASE}/api/booking/available', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export default function Booking() {
     const token = localStorage.getItem('token');
 
     try {
-      const res = await fetch('${process.env.REACT_APP_API_BASE}/api/booking', {
+      const res = await fetch('${import.meta.env.VITE_API_BASE}/api/booking', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
