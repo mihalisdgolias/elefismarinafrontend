@@ -7,9 +7,8 @@ dist/
 build/
 
 # Local environment variables
-.env
-.env.local
-.env.*.local
+#.env.local
+#.env.*.local
 
 # Log files
 npm-debug.log*
