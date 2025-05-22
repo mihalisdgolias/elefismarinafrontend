@@ -9,11 +9,15 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('${import.meta.env.VITE_API_BASE}/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE}/api/auth/login`,
+        {
+          method: 'POST',
+          credentials: 'include', // include credentials if needed
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       if (res.ok) {
         const { token } = await res.json();
         localStorage.setItem('token', token);
