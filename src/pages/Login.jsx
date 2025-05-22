@@ -9,15 +9,13 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(
-          'https://elefsis-marina-booking-api-cqasecbgckaddcdg.canadacentral-01.azurewebsites.net/api/auth/login',
-        {
-          method: 'POST',
-          credentials: 'include', // include credentials if needed
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const res = await fetch(`${import.meta.env.VITE_API_BASE}/api/auth/login`, {
+        method: 'POST',
+        credentials: 'include', // Ensure credentials are sent with the request
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
       if (res.ok) {
         const { token } = await res.json();
         localStorage.setItem('token', token);
@@ -27,7 +25,7 @@ export default function Login() {
         alert(message || 'Login failed');
       }
     } catch (err) {
-      console.error(err);
+      console.error('Network error:', err);
       alert('Network error');
     }
   };
