@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       // any request starting with /api will be forwarded:
       '/api': {
-        target: '${process.env.REACT_APP_API_BASE}',
+        target: '${import.meta.env.VITE_API_BASE}',
         changeOrigin: true,
         secure: false,      // if you ever use HTTPS on 5000
         rewrite: (path) => path.replace(/^\/api/, '/api')

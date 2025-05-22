@@ -19,19 +19,24 @@ export default function Register() {
     }
 
     try {
-      const res = await fetch('${import.meta.env.VITE_API_BASE}/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          first_name: firstName,
-          last_name: lastName,
-          phone,
-          company,
-          vessel_name: vesselName,
-          email,
-          password
-        }),
-      });
+      // ← use backticks (`) here, and hit the /register route
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE}/api/auth/register`,
+        {
+          method: 'POST',
+          credentials: 'include',            // if you need cookies/auth headers
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            phone,
+            company,
+            vessel_name: vesselName,
+            email,
+            password,
+          }),
+        }
+      );
 
       if (res.ok) {
         navigate('/login');
@@ -99,16 +104,15 @@ export default function Register() {
         </label>
 
         <label className="block mb-4">
-            <span className="text-sm font-medium text-gray-700">Company</span>
-              <input
-              type="text"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
-              required
-              className="mt-1 block w-full border border-gray-300 rounded p-2"
-            />
-          </label>
-
+          <span className="text-sm font-medium text-gray-700">Company</span>
+          <input
+            type="text"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            required
+            className="mt-1 block w-full border border-gray-300 rounded p-2"
+          />
+        </label>
 
         <label className="block mb-4">
           <span className="text-sm font-medium text-gray-700">Email</span>
