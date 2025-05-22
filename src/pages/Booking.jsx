@@ -87,8 +87,8 @@ export default function Booking() {
           body: JSON.stringify({
             slot_id: slotId,
             start_date: startDate,
-            start_time: startTime,
             end_date: endDate,
+            start_time: startTime,
             end_time: endTime,
             email: email || undefined,
           }),
@@ -101,8 +101,8 @@ export default function Booking() {
           state: {
             slot: slotId,
             startDate,
-            startTime,
             endDate,
+            startTime,
             endTime,
             totalPrice: data.total_price,
           },
@@ -164,9 +164,7 @@ export default function Booking() {
             />
           </div>
           <div className="col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
-              Send confirmation to (optional email)
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Send confirmation to (optional email)</label>
             <input
               type="email"
               value={email}

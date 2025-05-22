@@ -9,7 +9,10 @@ export default function SlotSelection() {
   useEffect(() => {
     async function fetchSlots() {
       try {
-        const res = await fetch('${import.meta.env.VITE_API_BASE}/api/bookings/available');
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE}/api/booking/available`,
+          { credentials: 'include' }
+        );
         if (!res.ok) throw new Error('Failed to load slots');
         const data = await res.json();
         setSlots(data);
@@ -41,11 +44,12 @@ export default function SlotSelection() {
           {slots.map((slot) => (
             <div key={slot.id} className="border rounded-xl p-6 flex flex-col">
               <div className="flex-1">
-                <h2 className="text-xl font-semibold mb-2">{slot.slipName}</h2>
+                <h2 className="text-xl font-semibold mb-2">{slot.slipName || slot.name || `Slot ${slot.id}`}</h2>
                 <p>
                   {new Date(slot.date).toLocaleDateString()} at{' '}
                   {new Date(slot.time).toLocaleTimeString()}
                 </p>
+                <p className="text-sm text-gray-600">Price: ${slot.price}</p>
               </div>
               <button
                 onClick={() => handleSelect(slot)}
