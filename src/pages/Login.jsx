@@ -10,7 +10,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_BASE}/api/auth/login`,
+          'https://elefsis-marina-booking-api-cqasecbgckaddcdg.canadacentral-01.azurewebsites.net/api/auth/login',
         {
           method: 'POST',
           credentials: 'include', // include credentials if needed
